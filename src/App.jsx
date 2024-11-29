@@ -6,7 +6,7 @@ import LoadMoreBtn from './components/LoadMoreBtn/LoadMoreBtn';
 import ErrorMessage from './components/ErrorMessage/ErrorMessage';
 import ImageModal from './components/ImageModal/ImageModal';
 import { Toaster } from 'react-hot-toast';
-import { fetchImages } from './js/api';
+import { fetchImages } from './api/api';
 import './App.css';
 
 const App = () => {
