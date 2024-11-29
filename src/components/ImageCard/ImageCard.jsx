@@ -1,34 +1,30 @@
 import PropTypes from 'prop-types';
-import styles from './ImageGallery.module.css';
-import ImageCard from './ImageCard'; // Import the new ImageCard component
+import styles from './ImageCard.module.css';
 
-const ImageGallery = ({ images, onImageClick }) => (
-    <ul className={styles.gallery}>
-        {images.map(({ id, urls, alt_description }) => (
-            <ImageCard
-                key={id}
-                id={id}
-                imageUrlSmall={urls.small}
-                imageUrlRegular={urls.regular}
-                altText={alt_description}
-                onClick={onImageClick}
-            />
-        ))}
-    </ul>
-);
-
-ImageGallery.propTypes = {
-    images: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.string.isRequired,
-            urls: PropTypes.shape({
-                small: PropTypes.string.isRequired,
-                regular: PropTypes.string.isRequired,
-            }).isRequired,
-            alt_description: PropTypes.string,
-        })
-    ).isRequired,
-    onImageClick: PropTypes.func.isRequired,
+const ImageCard = ({
+    id,
+    imageUrlSmall,
+    imageUrlRegular,
+    altText,
+    onClick,
+}) => {
+    return (
+        <li
+            key={id}
+            className={styles.card}
+            onClick={() => onClick(imageUrlRegular)}
+        >
+            <img src={imageUrlSmall} alt={altText} className={styles.image} />
+        </li>
+    );
 };
 
-export default ImageGallery;
+ImageCard.propTypes = {
+    id: PropTypes.string.isRequired,
+    imageUrlSmall: PropTypes.string.isRequired,
+    imageUrlRegular: PropTypes.string.isRequired,
+    altText: PropTypes.string,
+    onClick: PropTypes.func.isRequired,
+};
+
+export default ImageCard;
